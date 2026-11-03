@@ -1,0 +1,387 @@
+-- This file was generated at discord.gg/syncrypt
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local LocalPlayer = Players.LocalPlayer
+
+local function v5(p1)
+	local syn_ = syn
+
+	if syn_ then
+		syn_ = syn.request
+	end
+
+	local Body, body
+
+	if syn_ then
+		v10 = syn_({
+			Url = p1,
+			Method = "GET"
+		})
+
+		if v10 then
+			Body = v10.Body
+		else
+			Body = v10
+		end
+
+		if Body then
+			return v10.Body
+		else
+			if v10 then
+				body = v10.body
+			else
+				body = v10
+			end
+
+			if body then
+				return v10.body
+			elseif type(v10) == "string" then
+				return v10
+			else
+				return nil
+			end
+		end
+	end
+
+	syn_ = http_request
+
+	if syn_ then
+		v10 = syn_({
+			Url = p1,
+			Method = "GET"
+		})
+
+		if v10 then
+			Body = v10.Body
+		else
+			Body = v10
+		end
+
+		if Body then
+			return v10.Body
+		else
+			if v10 then
+				body = v10.body
+			else
+				body = v10
+			end
+
+			if body then
+				return v10.body
+			elseif type(v10) == "string" then
+				return v10
+			else
+				return nil
+			end
+		end
+	end
+
+	syn_ = request
+
+	if syn_ then
+		v10 = syn_({
+			Url = p1,
+			Method = "GET"
+		})
+
+		if v10 then
+			Body = v10.Body
+		else
+			Body = v10
+		end
+
+		if Body then
+			return v10.Body
+		else
+			if v10 then
+				body = v10.body
+			else
+				body = v10
+			end
+
+			if body then
+				return v10.body
+			elseif type(v10) == "string" then
+				return v10
+			else
+				return nil
+			end
+		end
+	end
+
+	local fluxus_ = fluxus
+
+	if fluxus_ then
+		fluxus_ = fluxus.request
+	end
+
+	syn_ = fluxus_ or function()
+		error("No HTTP function found.")
+	end
+
+	local v11 = syn_({
+		Url = p1,
+		Method = "GET"
+	})
+
+	if v11 then
+		Body = v11.Body
+	else
+		Body = v11
+	end
+
+	if Body then
+		return v11.Body
+	else
+		if v11 then
+			body = v11.body
+		else
+			body = v11
+		end
+
+		if body then
+			return v11.body
+		elseif type(v11) == "string" then
+			return v11
+		else
+			return nil
+		end
+	end
+end
+
+local text = ""
+local u12 = false
+
+local function v13()
+	local function v14()
+		return v5("https://pastebin.com/raw/Yt2CwzZY")
+	end
+
+	local ok, result = pcall(v14)
+
+	if not (ok and result) then
+		return
+	end
+
+	local function v17()
+		return HttpService:Base64Decode(result)
+	end
+
+	local ok2, result2 = pcall(v17)
+	local v20 = ok2 and result2 and result2 or (function(p2)
+		local s1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+		local t1 = {}
+
+		for i = 1, #p2, 4 do
+			local v24, v25, v26, v27 = p2:byte(i, i + 3)
+			local string_ = string
+			local v29 = s1.find(s1, string_.char(v24), 1, true) - 1
+			local v30 = s1:find(string.char(v25), 1, true) - 1
+			local v31
+
+			if v30 then
+				v31 = s1:find(string.char(v26), 1, true) - 1
+			else
+				v31 = v30
+			end
+
+			local v32 = v31 or nil
+			local v33
+
+			if v32 then
+				v33 = s1:find(string.char(v27), 1, true) - 1
+			else
+				v33 = v32
+			end
+
+			local v34 = v33 or nil
+			local v35 = #t1 + 1
+			local v36 = v29 * 4
+			local v37 = v30 / 16
+			local v38 = (v36 + math.floor(v37)) % 256
+
+			t1[v35] = string.char(v38)
+
+			if v32 then
+				local v39 = #t1 + 1
+				local v40 = v30 % 16 * 16
+				local v41 = v32 / 4
+				local v42 = v40 + math.floor(v41) % 256
+
+				t1[v39] = string.char(v42)
+
+				if v34 then
+					local v43 = #t1 + 1
+					local v44 = v32 % 4 * 64 + v34
+
+					t1[v43] = string.char(v44)
+				end
+			end
+		end
+
+		return table.concat(t1)
+	end)(result)
+	local v45
+
+	if v20 then
+		v45 = v20 ~= ""
+	else
+		v45 = v20
+	end
+
+	if not v45 then
+		return
+	end
+
+	text = v20:gsub("^%s*(.-)%s*$", "%1")
+	u12 = true
+end
+
+task.spawn(v13)
+
+local ScreenGui = Instance.new("ScreenGui")
+
+ScreenGui.Name = "GroupVerify"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+local Frame = Instance.new("Frame")
+
+Frame.Size = UDim2.fromOffset(470, 290)
+Frame.Position = UDim2.fromScale(0.5, 0.5)
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(16, 16, 18)
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 12)
+
+local UIStroke = Instance.new("UIStroke", Frame)
+
+UIStroke.Color = Color3.fromRGB(70, 70, 75)
+UIStroke.Thickness = 1
+
+local TextLabel = Instance.new("TextLabel")
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundTransparency = 1
+TextLabel.Size = UDim2.new(1, 0, 0, 40)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "Group Verification"
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextSize = 24
+
+local TextLabel2 = Instance.new("TextLabel")
+
+TextLabel2.Parent = Frame
+TextLabel2.BackgroundTransparency = 1
+TextLabel2.Position = UDim2.new(0, 20, 0, 50)
+TextLabel2.Size = UDim2.new(1, -40, 0, 120)
+TextLabel2.TextWrapped = true
+TextLabel2.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel2.TextYAlignment = Enum.TextYAlignment.Top
+TextLabel2.Font = Enum.Font.Gotham
+TextLabel2.TextSize = 15
+TextLabel2.TextColor3 = Color3.fromRGB(205, 205, 205)
+TextLabel2.Text = "Welcome!\n\n1. Click \"Copy Group Link\".\n2. Join the Roblox group.\n3. Come back and press \"Verify\".\n\nIf verification doesn\'t work immediately, Roblox may require you to rejoin the experience.\n\nThis is NOT a key system.\nIt only checks whether you are in our Roblox group."
+
+local TextLabel3 = Instance.new("TextLabel")
+
+TextLabel3.Parent = Frame
+TextLabel3.BackgroundTransparency = 1
+TextLabel3.Position = UDim2.new(0, 20, 1, -70)
+TextLabel3.Size = UDim2.new(1, -40, 0, 20)
+TextLabel3.Font = Enum.Font.GothamMedium
+TextLabel3.TextSize = 15
+TextLabel3.TextColor3 = Color3.fromRGB(140, 140, 140)
+TextLabel3.Text = "Waiting for verification..."
+
+local TextButton = Instance.new("TextButton")
+
+TextButton.Parent = Frame
+TextButton.Size = UDim2.fromOffset(180, 42)
+TextButton.Position = UDim2.new(0, 20, 1, -45)
+TextButton.BackgroundColor3 = Color3.fromRGB(95, 55, 255)
+TextButton.Text = "Verify"
+TextButton.Font = Enum.Font.GothamBold
+TextButton.TextSize = 16
+TextButton.TextColor3 = Color3.new(1, 1, 1)
+TextButton.BorderSizePixel = 0
+Instance.new("UICorner", TextButton).CornerRadius = UDim.new(0, 10)
+
+local TextButton2 = Instance.new("TextButton")
+
+TextButton2.Parent = Frame
+TextButton2.Size = UDim2.fromOffset(220, 42)
+TextButton2.Position = UDim2.new(1, -240, 1, -45)
+TextButton2.BackgroundColor3 = Color3.fromRGB(38, 38, 42)
+TextButton2.Text = "Copy Group Link"
+TextButton2.Font = Enum.Font.GothamBold
+TextButton2.TextSize = 16
+TextButton2.TextColor3 = Color3.new(1, 1, 1)
+TextButton2.BorderSizePixel = 0
+Instance.new("UICorner", TextButton2).CornerRadius = UDim.new(0, 10)
+
+local function v54(p3, p4)
+	local BackgroundColor3 = p3.BackgroundColor3
+
+	p3.MouseEnter:Connect(function()
+		local v56 = TweenService
+		local v57 = p3
+		local TweenInfo_ = TweenInfo
+		local t2 = {
+			BackgroundColor3 = p4
+		}
+
+		v56.Create(v56, v57, TweenInfo_.new(0.15), t2):Play()
+	end)
+	p3.MouseLeave:Connect(function()
+		local v60 = TweenService
+		local v61 = p3
+		local TweenInfo_ = TweenInfo
+		local t3 = {
+			BackgroundColor3 = BackgroundColor3
+		}
+
+		v60.Create(v60, v61, TweenInfo_.new(0.15), t3):Play()
+	end)
+end
+
+v54(TextButton, Color3.fromRGB(120, 80, 255))
+v54(TextButton2, Color3.fromRGB(55, 55, 60))
+
+local function v64()
+	if u12 then
+		if setclipboard then
+			setclipboard(text)
+			TextLabel3.Text = "✓ Group link copied."
+			TextLabel3.TextColor3 = Color3.fromRGB(0, 220, 120)
+
+			return
+		else
+			TextLabel3.Text = text
+			TextLabel3.TextColor3 = Color3.fromRGB(255, 220, 120)
+
+			return
+		end
+	else
+		TextLabel3.Text = "⏳ Loading link, please wait..."
+		TextLabel3.TextColor3 = Color3.fromRGB(255, 220, 120)
+	end
+end
+
+TextButton2.MouseButton1Click:Connect(v64)
+TextButton.MouseButton1Click:Connect(function()
+	TextLabel3.Text = "Checking..."
+	TextLabel3.TextColor3 = Color3.fromRGB(220, 220, 220)
+	task.wait(0.5)
+
+	if LocalPlayer:IsInGroup(4562358341) then
+		TextLabel3.Text = "✓ Verified!"
+		TextLabel3.TextColor3 = Color3.fromRGB(0, 255, 140)
+	else
+		TextLabel3.Text = "✗ You are not in the group."
+		TextLabel3.TextColor3 = Color3.fromRGB(255, 90, 90)
+	end
+end)
